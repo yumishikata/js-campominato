@@ -1,10 +1,8 @@
+// ------------FUNZIONI----------------
+
 function randomNum(min , max) {
     var y = Math.floor(Math.random() * max) + min;
     return y;
-}
-
-function insertNum(array , num) {
-    array.push(num);
 }
 
 function duplicato(array) {
@@ -28,34 +26,61 @@ function inArray(array, numero){
     return presente;
 }
 
-const bombe = 16;
-const max = 100;
+// ------------FINE FUNZIONI----------------
 
-var arrayBombe = [];
-var i = 0;
-while(i<bombe) {
-    arrayBombe[i] = (randomNum(1 , max));
-    if (duplicato(arrayBombe) == false) {
-        i++;
-    } 
+document.getElementById("invio").addEventListener('click' , 
+function() {
+    const bombe = 16;
+    var max;
+    var diff = document.getElementById("difficolta").value;
+    console.log(diff);
+    if (diff == 0){
+        max = 100;
+    }
+    else if (diff == 1) {
+        max = 80;
+    }
+    else {
+        max = 50;
     }
 
+    var arrayBombe = [];
+    var i = 0;
 
-console.log(arrayBombe);
-i = 0;
-var arrayUtente= [];
-var risultato;
-while (i < (max - bombe)) {
-    arrayUtente[i] = prompt('Inserisci un numero da 1 a 100 (mai inserito prima). Posizione ' + i + ': ');
-    if (duplicato(arrayUtente) == false && inArray(arrayBombe , arrayUtente[i]) == false ){
-        i++;
+    while(i<bombe) {
+        arrayBombe[i] = (randomNum(1 , max));
+        if (duplicato(arrayBombe) == false) {
+            i++;
+        } 
     }
-    else if (inArray(arrayBombe , arrayUtente[i]) == true) {
-        break;
+
+    i = 0;
+    var arrayUtente= [];
+    var risultato;
+
+    while (i < (max - bombe)) {
+        arrayUtente[i] = prompt('Inserisci un numero da 1 a ' + max + '(mai inserito prima). Posizione ' + i + ': ');
+        if (duplicato(arrayUtente) == false && inArray(arrayBombe , arrayUtente[i]) == false ){
+            i++;
+        }
+        else if (inArray(arrayBombe , arrayUtente[i]) == true) {
+            break;
+        }
     }
+    risultato = i;
+
+    document.getElementById("arr-bombe").innerHTML = "BOMBE: " + arrayBombe;
+    document.getElementById("arr-utente").innerHTML = "PLAYER: " + arrayUtente;
+    document.getElementById("risultato").innerHTML = "RISULTATO: " + risultato;
 }
-console.log(arrayUtente);
-risultato = i;
-console.log('IL TUO RISULTATO E ' + risultato);
+
+);
+
+document.getElementById("annulla").addEventListener('click' , 
+function() {
+    location.reload();
+}
+);
+
 
 
