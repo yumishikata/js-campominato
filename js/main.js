@@ -60,7 +60,7 @@ function() {
 
     while (i < (max - bombe)) {
         arrayUtente[i] = prompt('Inserisci un numero da 1 a ' + max + '(mai inserito prima). Posizione ' + i + ': ');
-        if (duplicato(arrayUtente) == false && inArray(arrayBombe , arrayUtente[i]) == false ){
+        if (duplicato(arrayUtente) == false && arrayUtente[i] < max && inArray(arrayBombe , arrayUtente[i]) == false ){
             i++;
         }
         else if (inArray(arrayBombe , arrayUtente[i]) == true) {
