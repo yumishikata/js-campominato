@@ -62,11 +62,16 @@ function() {
 
     while (i < (max - bombe)) {
         arrayUtente[i] = prompt('Inserisci un numero da 1 a ' + max + '(mai inserito prima). Posizione ' + i + ': ');
-        if (duplicato(arrayUtente) == false && arrayUtente[i] < max && inArray(arrayBombe , arrayUtente[i]) == false ){
-            i++;
+        if (!isNaN(arrayUtente[i])) {
+            if (duplicato(arrayUtente) == false && arrayUtente[i] < max && inArray(arrayBombe , arrayUtente[i]) == false ){
+                i++;
+            }
+            else if (inArray(arrayBombe , arrayUtente[i]) == true) {
+                break;
+            }
         }
-        else if (inArray(arrayBombe , arrayUtente[i]) == true) {
-            break;
+        else {
+            alert("Inserire un numero!");
         }
     }
     risultato = i;
