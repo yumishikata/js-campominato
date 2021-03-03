@@ -1,7 +1,7 @@
 // ------------FUNZIONI----------------
 
 function randomNum(min , max) {
-    var y = Math.floor(Math.random() * max) + min;
+    var y = Math.floor(Math.random() * (max - min + 1)) + min;
     return y;
 }
 
@@ -11,6 +11,7 @@ function duplicato(array) {
     for (j=0 ; j < k ; j++){
         if (array[k] == array[j]) {
             duplicato = true;
+            return duplicato;
         }
     }
     return duplicato;
@@ -21,6 +22,7 @@ function inArray(array, numero){
     for (j=0 ; j<array.length ; j++) {
         if (array[j] == numero){
             presente = true;
+            return presente;
         }
     }
     return presente;
